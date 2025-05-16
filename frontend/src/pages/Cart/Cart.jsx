@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 const Cart = () => {
 
-  const {cartItems, food_list, removeFromCart, getTotalCartAmount} = useContext(StoreContext);
+  const {cartItems, food_list, removeFromCart, getTotalCartAmount, url} = useContext(StoreContext);
 
   const navigate = useNavigate();
 
@@ -14,12 +14,12 @@ const Cart = () => {
     <div className='cart'>
       <div className="cart-items">
         <div className="cart-items-title">
-          <p>Sản phẩm</p>
-          <p>Tên</p>
-          <p>Giá</p>
-          <p>Số lượng</p>
-          <p>Tổng cộng</p>
-          <p>Xóa</p>
+          <p>Items</p>
+          <p>Title</p>
+          <p>Price</p>
+          <p>Quantity</p>
+          <p>Total</p>
+          <p>Remove</p>
         </div>
         <br />
         <hr />
@@ -28,11 +28,11 @@ const Cart = () => {
               return (
                 <div>
                     <div className="cart-items-title cart-items-item">
-                      <img src={item.image} alt="" />
+                      <img src={url+ "/images/" + item.image} alt="" />
                       <p>{item.name}</p>
-                      <p>{item.price}đ</p>
+                      <p>${item.price}</p>
                       <p>{cartItems[item._id]}</p>
-                      <p>{item.price * cartItems[item._id]}đ</p>
+                      <p>${item.price * cartItems[item._id]}</p>
                       <p onClick={() => removeFromCart(item._id)} className='cross'>x</p>
                     </div>
                   <hr />
@@ -43,31 +43,31 @@ const Cart = () => {
       </div>
       <div className="cart-bottom">
         <div className="cart-total">
-          <h2>Tổng giỏ hàng</h2>
+          <h2>Cart Totals</h2>
           <div>
             <div className="cart-total-details">
-                <p>Tạm tính</p>
-                <p>{getTotalCartAmount()}đ</p>
+                <p>Subtotal</p>
+                <p>${getTotalCartAmount()}</p>
             </div>
             <hr />
             <div className="cart-total-details">
-                <p>Phí giao hàng</p>
-                <p>{getTotalCartAmount() === 0 ? 0 : 2000}đ</p>
+                <p>Delivery Fee</p>
+                <p>${getTotalCartAmount()===0?0:2}</p>
             </div>
             <hr />
             <div className="cart-total-details">
-                <b>Tổng cộng</b>
-                <b>{getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2000}đ</b>
+                <b>Total</b>
+                <b>${getTotalCartAmount()===0?0:getTotalCartAmount() + 2}</b>
             </div>
           </div>
-          <button onClick={() => navigate('/order')}>TIẾP TỤC THANH TOÁN</button>
+          <button onClick={() => navigate('/order')}>PROCEED TO CHECKOUT</button>
         </div>
         <div className="cart-promocode">
           <div>
-            <p>Nếu bạn có mã khuyến mãi, nhập tại đây</p>
+            <p>If you have a promo code, Enter it here</p>
             <div className="cart-promocode-input">
-              <input type="text" placeholder='Mã khuyến mãi' />
-              <button>Áp dụng</button>
+              <input type="text" placeholder='promo code' />
+              <button>Submit</button>
             </div>
           </div>
         </div>

@@ -19,14 +19,17 @@ const LoginPopup = ({setShowLogin}) => {
       const name = event.target.name;
       const value = event.target.value;
       setData(data => ({...data, [name]: value}));
+
     }
 
     const onLogin = async (event) => {
       event.preventDefault();
       let newUrl = url;
       if(currState==="Login"){
+        //newUrl = url + "api/user/login";
         newUrl = `${url}/api/user/login`;
       }else{
+        //newUrl = url + "api/user/register";
         newUrl = `${url}/api/user/register`;
       }
 
@@ -41,28 +44,31 @@ const LoginPopup = ({setShowLogin}) => {
       }
     }
 
+
   return (
     <div className='login-popup'>
       <form onSubmit={onLogin} className="login-popup-container">
         <div className="login-popup-title">
-            <h2>{currState === "Login" ? "Đăng nhập" : "Đăng ký"}</h2>
+            <h2>{currState}</h2>
             <img onClick={() => setShowLogin(false)} src={assets.cross_icon} alt="" />
         </div>
         <div className="login-popup-inputs">
-            {currState === "Login" ? <></> : <input name='name' onChange={onChangeHandler} value={data.name} type="text" placeholder='Tên của bạn' required />}
+            {currState==="Login"?<></>:<input name='name' onChange={onChangeHandler} value={data.name} type="text" placeholder='Your name' required />}
             
-            <input name='email' onChange={onChangeHandler} value={data.email} type="email" placeholder='Email của bạn' required />
-            <input name='password' onChange={onChangeHandler} value={data.password} type="password" placeholder='Mật khẩu' required />
+            <input name='email' onChange={onChangeHandler} value={data.email} type="email" placeholder='Your email' required/>
+            <input name='password' onChange={onChangeHandler} value={data.password} type="password" placeholder='Password' required />
         </div>
-        <button type='submit'>{currState === "Sign Up" ? "Tạo tài khoản" : "Đăng nhập"}</button>
+        <button type='submit'>{currState==="Sign Up"?"Create account":"Login"}</button>
         <div className="login-popup-condition">
             <input type="checkbox" required />
-            <p>Bằng cách tiếp tục, tôi đồng ý với Điều khoản sử dụng & Chính sách bảo mật</p>
+            <p>By continuing, I agree to the Terms of use & privacy policy</p>
         </div>
-        { currState === "Login"
-        ? <p>Chưa có tài khoản? <span onClick={() => setCurrState("Sign Up")}>Đăng ký ngay</span></p>
-        : <p>Đã có tài khoản? <span onClick={() => setCurrState("Login")}>Đăng nhập tại đây</span></p>
+        { currState==="Login"
+        ? <p>Create a new account? <span onClick={() => setCurrState("Sign Up")}>Click here</span></p>
+        : <p>Already have an account? <span onClick={() => setCurrState("Login")}>Login here</span></p>
         }
+        
+        
       </form>
     </div>
   )

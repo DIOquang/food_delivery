@@ -8,6 +8,7 @@ const Footer = () => {
         <div className="footer-content">
             <div className="footer-content-left">
                 <img src={assets.logo} alt="" />
+                <p>Delicious meals delivered to your door, fast and fresh.</p>
                 <div className="footer-social-icons">
                     <img src={assets.facebook_icon} alt="" />
                     <img src={assets.twitter_icon} alt="" />
@@ -15,16 +16,16 @@ const Footer = () => {
                 </div>
             </div>
             <div className="footer-content-center">
-                <h2>CÔNG TY</h2>
+                <h2>COMPANY</h2>
                 <ul>
                     <li>Home</li>
-                    <li>Về chúng tôi</li>
-                    <li>Vận Chuyển</li>
-                    <li>Chính sách</li>
+                    <li>About us</li>
+                    <li>Delivery</li>
+                    <li>Privacy policy</li>
                 </ul>
             </div>
             <div className="footer-content-right">
-                <h2>LIÊN HỆ</h2>
+                <h2>GET IN TOUCH</h2>
                 <ul>
                     <li>+84936923716</li>
                     <li>traungo456@gmail.com</li>
@@ -32,7 +33,7 @@ const Footer = () => {
             </div>
         </div>
         <hr />
-        <p className="footer-copyright">Copyright 2025</p>
+        <p className="footer-copyright">Copyright 2025 - All Right Reserved.</p>
     </div>
   )
 }
